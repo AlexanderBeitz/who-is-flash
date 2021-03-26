@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css?">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/5c79cae877.js" crossorigin="anonymous"></script>	
+	</head>
+	<body bgcolor=20242d>
+
+		<div class="border"></div>
+		
+		<div class="player-box">
+			<div class="player-box-left">
+				<div class="player-title">
+					<h3><i class="far fa-user"></i> Spieler 1</h3>
+				</div>
+				<div class="player-points">
+					<p>Punkte: 0</p>
+				</div>
+			</div>
+			
+			<!-- Punkte Spieler 2 rechtsbündig -->
+			
+			<div class="player-box-right">
+				<div class="player-title">
+					<h3><i class="far fa-user"></i> Spieler 2</h3>
+				</div>
+				<div class="player-points">
+					<p>Punkte: 0</p>
+				</div>
+			</div>
+		</div>
+		<div class="title">
+			<div class="title-1">
+				<h2>Who is</h2>
+			</div>
+			<div class="title-2">
+				<h1>FLASH</h1>
+			</div>
+		</div>
+
+		<button class="main" onclick="start()">Start</button>
+		<div class="key">sdf</div>
+
+
+
+		<script>
+			var keyNames = ['<i class="fas fa-chevron-up"></i>', '<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-down"></i>', '<i class="fas fa-chevron-right"></i>'];
+			var player1Keys = ["w", "a", "s", "d"];
+			var player2Keys = ["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"];
+
+			var currentKey = -1;
+
+
+			window.addEventListener("keydown", function (event) {
+				if (event.defaultPrevented) {
+					return;
+				}
+				if(currentKey != -1){
+					player1Keys.forEach(function f(key, index) {
+						if(event.key == key){
+							if(index == currentKey){
+								addPoint(1);
+							} else {
+								removePoint(1);
+							}
+						}
+					});
+					player2Keys.forEach(function f(key, index) {
+						if(event.key == key){
+							if(index == currentKey){
+								addPoint(2);
+							} else {
+								removePoint(2);
+							}
+						}
+					});
+				}
+
+				event.preventDefault();
+			}, true);
+
+			function removePoint(player){
+				var points = document.getElementsByClassName("player-points")[player - 1].getElementsByTagName("p")[0].innerHTML;
+				points = points.replace("Punkte: ", "");
+				points = parseInt(points);
+				points = points - 1;
+				document.getElementsByClassName("player-points")[player - 1].getElementsByTagName("p")[0].innerHTML = "Punkte: " + points;
+				
+				currentKey = -1;
+				countdown = 0;
+				document.getElementsByClassName("key")[0].innerHTML = 'LOSE <i class="far fa-user"></i> ' + player;
+				interval = setInterval(start, 1500);
+			}
+
+			function addPoint(player){
+				var points = document.getElementsByClassName("player-points")[player - 1].getElementsByTagName("p")[0].innerHTML;
+				points = points.replace("Punkte: ", "");
+				points = parseInt(points);
+				points = points + 1;
+				document.getElementsByClassName("player-points")[player - 1].getElementsByTagName("p")[0].innerHTML = "Punkte: " + points;
+
+				currentKey = -1;
+				countdown = 0;
+				document.getElementsByClassName("key")[0].innerHTML = 'WIN <i class="far fa-user"></i> ' + player;
+				interval = setInterval(start, 1500);
+			}
+
+			/*Start mit Leertaste*/
+			
+			var countdown = 3;
+			var interval = null;
+			function start(){
+				if(countdown == 0){
+					clearInterval(interval);
+					currentKey = Math.floor(Math.random() * player1Keys.length);
+					document.getElementsByClassName("key")[0].innerHTML = keyNames[currentKey];
+				} else {
+					document.getElementsByClassName("key")[0].innerHTML = countdown;
+					countdown = countdown - 1;
+					if(interval == null){
+						document.getElementsByClassName("main")[0].style.display = "none";
+						document.getElementsByClassName("key")[0].style.display = "block";
+						interval = setInterval(start, 1000);
+					}
+				}
+			}
+
+		</script>
+	</body>
+</html>

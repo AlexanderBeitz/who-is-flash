@@ -1,0 +1,103 @@
+/*Fonts*/
+h1{
+	font-family: Segoe Script,Roboto;
+	font-size: 70px;
+	font-weight: 900;
+	color: #e92f2f;
+}
+
+h2{
+	font-family: Roboto;
+	font-size: 30px;
+	color: #e92f2f;
+}
+h3{
+	font-family: Roboto;
+	color: #ffffff;
+}
+
+p{
+	font-family: Roboto;
+	color: #c7d2d2;
+}
+
+.border{
+	margin-top: 100px;
+	border-top: 4px solid #e92f2f;
+}
+
+.player-box{
+	margin: 70px;
+}
+
+.player-box-left{
+	float: left;
+}
+
+.player-box-right{
+	float: right;
+}
+
+.player-points{
+	margin-top: -15px;
+}
+
+.title-1{
+	display: flex;
+	justify-content: center;
+}
+
+.title-2{
+	display: flex;
+	justify-content: center;
+	margin: -100px;
+}
+
+/*Button größer + Text mittig*/
+
+.main{
+	display: flex;
+	justify-content: center;
+	background: #e92f2f;
+	margin-left: 34.5%;
+	margin-right: 34.5%;
+	margin-top: 100px;
+	border: none;
+	border-radius: 40px;
+	box-shadow: 0 0 10px 5px rgb(0 0 0 / 50%);
+	width: 30%;
+
+	font-family: Roboto;
+	font-size: 60px;
+	color: #ffffff;
+
+	padding: 0;
+	transition: 0.2s;
+	cursor: pointer;
+}
+
+.main:hover {
+	transform: scale(1.05);
+	transition: 0.2s;
+}
+
+.key {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	background: #e92f2f;
+	margin-left: 34.5%;
+	margin-right: 34.5%;
+	margin-top: 100px;
+	border: none;
+	border-radius: 40px;
+	box-shadow: 0 0 10px 5px rgb(0 0 0 / 50%);
+	width: 30%;
+
+	font-family: Roboto;
+	font-size: 60px;
+	font-weight: 900;
+	color: #ffffff;
+
+	display: none;
+}
